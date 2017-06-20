@@ -1,0 +1,39 @@
+{
+    "network": "fb",
+    "text": "This is a sample post 1",
+    "author": "@tint",
+    "tags":[
+        "foo",
+        "bar"
+    ]
+},
+{
+    "network": "fb",
+    "text": "This is a sample post 2",
+    "author": "@tln",
+    "tags":[
+        "bar"
+    ]
+},
+{
+    "network": "tw",
+    "text": "This is a sample post 3",
+    "author": "@tint",
+    "tags":[
+        "foo"
+    ]
+},
+{
+    "network": "tw",
+    "text": "This is a sample post 4",
+    "author": "@tln"
+},
+{
+    "network": "ig",
+    "text": "This is a sample post 5",
+    "author": "@tint",
+    "tags":[
+        "foo",
+        "bar"
+    ]
+}

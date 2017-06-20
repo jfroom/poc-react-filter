@@ -1,0 +1,113 @@
+<style>
+    .post {
+        min-width: 200px;
+        border: 1px solid black;
+        border-top-width: 4px;
+        margin: 10px;
+        position: relative;
+    }
+    .post .content {
+        padding: 20px;
+    }
+    #posts { 
+        display: flex; 
+        width: 100%; 
+        flex-wrap: wrap;
+    }
+    .author {
+        padding: 5px 20px;
+        background: #aaa;
+    }
+    .tags {
+        position: absolute;
+        right:0;
+        bottom: 0;
+        display: flex;
+    }
+    .tag {
+        font-size: x-small;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0 2px;
+    }
+    .tag-foo {
+        background-color: #cfc; 
+    }
+    .tag-bar {
+        background-color: #fcc; 
+    }
+
+    .tw {
+        border-top-color: #66d;
+    }
+    .ig {
+        border-top-color: #d4d;
+    }
+    .fb {
+        border-top-color: #00d;
+    }
+</style>
+
+<div id="posts">
+    <div class="post fb">
+        <div class="content">
+            This is a sample post 1
+        </div>
+        <div class="author">
+            @tint
+        </div>
+        <div class="tags">
+            <div class="tag tag-foo">foo</div>
+            <div class="tag tag-bar">bar</div>
+        </div>
+    </div>
+
+    <div class="post fb">
+        <div class="content">
+            This is a sample post 2
+        </div>
+        <div class="author">
+            @tln
+        </div>
+        <div class="tags">
+            <div class="tag tag-bar">bar</div>
+        </div>
+    </div>
+
+    <div class="post tw">
+        <div class="content">
+            This is a sample post 3
+        </div>
+        <div class="author">
+            @tint
+        </div>
+        <div class="tags">
+            <div class="tag tag-foo">foo</div>
+        </div>
+    </div>
+
+    <div class="post tw">
+        <div class="content">
+            This is a sample post 4
+        </div>
+        <div class="author">
+            @tln
+        </div>
+        <div class="tags">
+        </div>
+    </div>
+
+    <div class="post ig">
+        <div class="content">
+            This is a sample post 5
+        </div>
+        <div class="author">
+            @tint
+        </div>
+        <div class="tags">
+            <div class="tag tag-foo">foo</div>
+            <div class="tag tag-bar">bar</div>
+        </div>
+    </div>
+
+</div>
