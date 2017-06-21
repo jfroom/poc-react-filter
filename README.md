@@ -1,6 +1,45 @@
-TODO: Add docs & notes.
+# poc-react-filter
+
+Proof-of-concept using React to client-side filter a set of simple posts. For an assignment based on criteria in [`/docs`](https://github.com/jfroom/poc-react-filter/tree/master/docs) folder. 
+
+Demo: https://jfroom.github.io/poc-react-filter/
+
+## Technologies
+- [React](https://facebook.github.io/react)
+- [Redux](http://redux.js.org/)
+- [Styled Components](https://www.styled-components.com/)
+- Scaffolded with [Create React App](https://github.com/facebookincubator/create-react-app) which leverages [Babel](https://babeljs.io/) and [webpack](https://webpack.js.org)
+- [Yarn](https://yarnpkg.com)
+- [React-Bootstrap](https://react-bootstrap.github.io/)
+- [Reselect](https://github.com/reactjs/reselect) - Selector library for Redux. Add'l references: [Redux: Computing Derived Data](http://redux.js.org/docs/recipes/ComputingDerivedData.html), [Jack Hsu's Redux Selectors](https://jaysoo.ca/2016/02/28/applying-code-organization-rules-to-concrete-redux-code/#selectors)
+- Aritechture inspired by [Jack Hsu's Redux app structure](https://jaysoo.ca/2016/02/28/organizing-redux-application/) and [todo example](https://github.com/jaysoo/todomvc-redux-react-typescript)
+
+## Challenge Questions
+
+> How could we extend this system to work with an API instead of filtering on the client? 
+
+I'd introduce [Redux-Saga](https://github.com/redux-saga/redux-saga) to handle async features, and [Axios](https://github.com/mzabriskie/axios) (or similar lib) to handle fetching. The app would need to be modified to start with a 'loading' visual, fetch initial data (or have it pre-loaded server side somehow), dispatch the data into the app onced fetched for rendering, then turn off the loading message or show an error state if fetch failed. Each filter change would trigger a fetch action like this. The client side filters could then be refactored out of the code.
+
+> What decisions went in to your choice of UI for filters?
+
+I didn't want to re-invent the wheel with the layout since this is more of a coding exercise. So I just leveraged the general layout from the moderation/curation page in the existing app. I used React-Bootstrap because I'm generally familiar with it, and it looks nice. I decided not to fiddle with the Filter pane - just keep it open since filtering s the point of this spike. For a quick and simple button toggles, I just swap between `default` and `primary` button styles. I also chose to use the [Styled Components approach to the CSS](https://m.alphasights.com/css-evolution-from-css-sass-bem-css-modules-to-styled-components-d4c1da3a659b) since it's something I've been using recently and fits nicely into React based apps. 
+
+
+> Bonus: Did you encounter any unexpected issues while building this?
+
+Funny you should ask! I always pick a feature or two that is new to me in these type of homework assignments so there a benefit to me other than trying to pass a test. This usually means I go a bit over the 'time limit' — but then at least I'm learning something new, and it's something I'm knowingly opting into. 
+
+This was the first time I used [Reselect](https://github.com/reactjs/reselect) and that took a little clunking around with. The memoization sounds powerful, and it was a nice way to decouple from the reducer code. 
+
+I didn't have to use React-Bootstrap or dial in the layout, but it's hard not to want to refine the design once Bootstrap is in place.
+
+Because of the way I structured the state data, the filter fields were a few levels deep into the state. When clicking on the filter field buttons, I could see the proper reducers being triggered, and proper new state being generated. But the components were not re-rendering with the new state. After a [bit of digging](https://github.com/reactjs/redux/issues/585), I realized that Redux only does a shallow compare on the state to determine a re-render. I had to modify my state handling a bit, and use Lodash `cloneDeep` on that filter data to fix the rendering.
+
+I added [Redux Dev Tools](https://github.com/gaearon/redux-devtools) into the solution so I could fiddle with the time-travel and debug state. I eventually realized that I was having some issues with [indavertently mutating state in the reducers](https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/Troubleshooting.md#it-shows-only-the-init-action-or-moving-back-and-forth-doesnt-update-the-state). This happened because I was incorrectly thought the object spread operator was similar to deep clone, but it's actually shallow. Once I fixed that with Lodash cloneDeep, the dev tools were working as expected.  
 
 --------------
+
+## EXISTING DOCS FROM CREATE-REACT-APP FOR CLUES ON HOW TO WORK WITH THIS REPO :)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
